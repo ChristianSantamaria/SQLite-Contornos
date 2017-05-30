@@ -97,4 +97,29 @@ public class BaseDatos {
         JOptionPane.showMessageDialog(null, "Se ha eliminado al usuario correctamente");
     }
 
+    /**
+     * Este metodo recibira el id por el que se quiere buscar y hara el select con el cual buscara toda la informacion de dicho usuario por la id
+     * @param Id El id por el que se identifica cada usuario
+     * @return Devolvemos un ResultSet para que el usuario lo pueda recorrer y visualizar los datos
+     * @throws SQLException 
+     */
+    public ResultSet consultar(String Id) throws SQLException {
+        Statement stmt = conex.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT Id, Nombre, Apellido, Edad FROM USUARIO WHERE Id = '" + Id + "'");
+        return rs;
+
+    }
+    
+    /**
+     * Este metodo es extra que hice que vale para mostrar todos los Id de usuario
+     * para asi poder pinchar en cualquiera y modificarlo o eliminarlo
+     * @return Devuelve un ResultSet que son todos los Ids registrados en la base de datos
+     * @throws SQLException 
+     */
+    public ResultSet selertTodo() throws SQLException {
+        Statement stmt = conex.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT Id FROM USUARIO");
+        return rs;
+
+    }
 }
