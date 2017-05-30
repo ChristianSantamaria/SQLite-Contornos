@@ -32,8 +32,9 @@ public class BaseDatos {
      * Aqui lo igualamos a la función DriverManager para que coja la conexión de la ruta que le habiamos enviado.
      * @throws SQLException 
      */
-    public void connect() throws SQLException{
+    public boolean connect() throws SQLException{
         this.conex = DriverManager.getConnection(ruta);
+        return true;
     }
     
     /**
@@ -62,7 +63,7 @@ public class BaseDatos {
         rs.setString(3, Apellido);
         rs.setInt(4, Edad);
         rs.execute();
-        JOptionPane.showMessageDialog(null, "El usuario de ha creado");
+        JOptionPane.showMessageDialog(null, "Se ha insertado un usuario correctamente");
     }
     
     /**
@@ -81,7 +82,7 @@ public class BaseDatos {
         rs.setInt(3, Edad);
         rs.setInt (4,Id);
         rs.execute();
-
+        JOptionPane.showMessageDialog(null, "Se ha modificado un usuario correctamente");
     }
     
     /**
@@ -94,7 +95,7 @@ public class BaseDatos {
         PreparedStatement rs = conex.prepareStatement(Qry);
         rs.setInt(1, Id);
         rs.execute();   
-        JOptionPane.showMessageDialog(null, "Se ha eliminado al usuario correctamente");
+        JOptionPane.showMessageDialog(null, "Se ha eliminado un usuario correctamente");
     }
 
     /**
