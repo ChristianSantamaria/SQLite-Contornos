@@ -302,7 +302,7 @@ public class ContornoSQLite extends javax.swing.JFrame {
                 new ContornoSQLite().setVisible(true);
                 
                 try {
-                    conexion = new BaseDatos("jdbc:sqlite:C:\\Users\\christian\\Desktop\\BaseContornos.db");
+                    conexion = new BaseDatos("BaseContornos.db");
                     conexion.crearTabla();                    
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Tabla ya creada");

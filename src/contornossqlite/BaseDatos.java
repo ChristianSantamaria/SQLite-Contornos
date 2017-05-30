@@ -19,14 +19,14 @@ public class BaseDatos {
      * @throws SQLException 
      */
     public BaseDatos(String ruta) throws SQLException {
-        this.ruta = ruta;    
+        this.ruta = "C:\\Users\\christian\\Desktop\\" + ruta;    
     }
     /**
      * Aqui tenemos el constructor por defecto que en mi caso crearia la base de datos ya en la carpeta home
      * @throws SQLException 
      */
     public BaseDatos() throws SQLException {
-         this.ruta = "jdbc:sqlite:/home/BaseContornos.db";   
+         this.ruta = "jdbc:sqlite:C:\\Users\\christian\\Desktop\\BaseContornos.db";   
     }
     /**
      * Aqui lo igualamos a la función DriverManager para que coja la conexión de la ruta que le habiamos enviado.
