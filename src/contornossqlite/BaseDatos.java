@@ -44,5 +44,57 @@ public class BaseDatos {
         Statement stmt = conex.createStatement();
         ResultSet rs = stmt.executeQuery("CREATE TABLE USUARIO (Id INTEGER PRIMARY KEY, Nombre STRING, Apellido STRING, Edad INTEGER)");
     }
+    
+    /**
+     * Aqui tenemos el metodo insertar donde al enviar todos esos parametros los añade a la query para asi ejecutarla
+     * En mi caso en la Qry donde deberían estar los valores coloco interrogaciones que la cambio con la variable Prepared.set”Tipo de la variable”(la posición, la variable). Y finalmente execute.
+     * @param Id El id por el que se identifica cada usuario
+     * @param Nombre El nombre del usuario
+     * @param Apellido El apellido del usuario
+     * @param Edad La edad del usuario
+     * @throws SQLException 
+     */
+    public void insertar(int Id, String Nombre, String Apellido, int Edad) throws SQLException {
+        String Qry = "INSERT INTO 'USUARIO' ('Id','Nombre', 'Apellido', 'Edad') VALUES (?,?,?,?)";
+        PreparedStatement rs = conex.prepareStatement(Qry);
+        rs.setInt(1, Id);
+        rs.setString(2, Nombre);
+        rs.setString(3, Apellido);
+        rs.setInt(4, Edad);
+        rs.execute();
+        JOptionPane.showMessageDialog(null, "El usuario de ha creado");
+    }
+    
+    /**
+     * Este metodo modificar es como el de insertar donde al enviar todos esos parametros los añade a la query para asi ejecutarla
+     * @param Id El id por el que se identifica cada usuario
+     * @param Nombre El nombre del usuario
+     * @param Apellido El apellido del usuario
+     * @param Edad La edad del usuario
+     * @throws SQLException 
+     */
+    public void modificar(int Id, String Nombre, String Apellido, int Edad) throws SQLException {
+        String Qry = "UPDATE 'USUARIO' SET Nombre = ?, Apellido= ?, Edad = ? WHERE Id = ?";     
+        PreparedStatement rs = conex.prepareStatement(Qry);
+        rs.setString(1, Nombre);
+        rs.setString(2, Apellido);
+        rs.setInt(3, Edad);
+        rs.setInt (4,Id);
+        rs.execute();
+
+    }
+    
+    /**
+     * Para este metodo precisamos un id para que cuando cree la query sepa cual borrar
+     * @param Id El id por el que se identifica cada usuario
+     * @throws SQLException 
+     */
+    public void eliminar(int Id) throws SQLException{
+        String Qry = "DELETE FROM USUARIO WHERE Id= ? ";
+        PreparedStatement rs = conex.prepareStatement(Qry);
+        rs.setInt(1, Id);
+        rs.execute();   
+        JOptionPane.showMessageDialog(null, "Se ha eliminado al usuario correctamente");
+    }
 
 }
